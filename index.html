@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capability Statement | Alexandria's Design LLC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D2137;
+    --blue: #1A5276;
+    --blue-mid: #2E75B6;
+    --blue-light: #3498DB;
+    --blue-pale: #EBF5FB;
+    --blue-wash: #F4F9FD;
+    --gold: #C8963E;
+    --gold-light: #E8C87A;
+    --gold-pale: #FDF6E8;
+    --white: #FFFFFF;
+    --gray-50: #F8F9FA;
+    --gray-100: #F0F2F5;
+    --gray-200: #E2E6EA;
+    --gray-400: #9CA3AF;
+    --gray-500: #6B7280;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+    --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--gray-700);
+    background: var(--gray-100);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Print styles ── */
+  @media print {
+    body { background: white; }
+    .page-wrapper { box-shadow: none; max-width: 100%; margin: 0; }
+    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .metrics-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .no-print { display: none; }
+    .section-card { break-inside: avoid; box-shadow: none; border: 1px solid var(--gray-200); }
+  }
+
+  /* ── Page Container ── */
+  .page-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--white);
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* ═══════════════════════════════════════
+     HERO HEADER
+     ═══════════════════════════════════════ */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 50%, var(--blue-mid) 100%);
+    color: var(--white);
+    padding: 3rem 3.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+
+  .hero-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-brand h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-brand .doc-type {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .hero-brand .tagline {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.02em;
+  }
+
+  .hero-badge {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .hero-badge .badge-label {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-badge .website {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+  }
+
+  .hero-badge .website:hover {
+    color: var(--gold-light);
+  }
+
+  /* ═══════════════════════════════════════
+     METRICS BAR
+     ═══════════════════════════════════════ */
+  .metrics-bar {
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .metric {
+    text-align: center;
+    padding: 1.25rem 1rem;
+    position: relative;
+  }
+
+  .metric:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: rgba(200, 150, 62, 0.3);
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .metric-label {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 0.2rem;
+  }
+
+  /* ═══════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════ */
+  .content {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    background: var(--blue-wash);
+    border-right: 1px solid var(--gray-200);
+    padding: 1.75rem 1.5rem;
+  }
+
+  .sidebar-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .sidebar-title {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+  }
+
+  .sidebar-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.25rem 0;
+    font-size: 0.8rem;
+  }
+
+  .sidebar-item .label {
+    color: var(--gray-500);
+    font-weight: 500;
+    font-size: 0.75rem;
+  }
+
+  .sidebar-item .value {
+    color: var(--gray-800);
+    font-weight: 600;
+    font-size: 0.8rem;
+    font-family: 'Inter', monospace;
+  }
+
+  .naics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  .naics-item {
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    padding: 0.15rem 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .naics-item .code {
+    font-weight: 700;
+    color: var(--blue);
+    font-family: 'Inter', monospace;
+    font-size: 0.75rem;
+    min-width: 52px;
+  }
+
+  .naics-item .desc {
+    font-weight: 400;
+  }
+
+  .cert-list {
+    list-style: none;
+  }
+
+  .cert-list li {
+    font-size: 0.78rem;
+    color: var(--gray-700);
+    padding: 0.2rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .cert-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .contact-block {
+    margin-bottom: 1rem;
+  }
+
+  .contact-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .contact-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gray-800);
+  }
+
+  .contact-role {
+    font-size: 0.72rem;
+    color: var(--gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-info {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    margin-top: 0.15rem;
+  }
+
+  .contact-info a {
+    color: var(--blue-mid);
+    text-decoration: none;
+  }
+
+  .contact-info a:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Main Column ── */
+  .main {
+    padding: 1.75rem 2rem;
+  }
+
+  .section {
+    margin-bottom: 1.75rem;
+  }
+
+  .section:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--gold);
+    display: inline-block;
+  }
+
+  /* About */
+  .about-text {
+    font-size: 0.88rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  .about-text strong {
+    color: var(--gray-800);
+    font-weight: 600;
+  }
+
+  /* Core Competencies */
+  .competencies {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .competency {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  .competency::before {
+    content: '';
+    flex-shrink: 0;
+    width: 5px;
+    height: 5px;
+    background: var(--blue-mid);
+    border-radius: 50%;
+    margin-top: 0.45rem;
+  }
+
+  .competency strong {
+    color: var(--gray-800);
+    font-weight: 600;
+  }
+
+  /* Past Performance Table */
+  .pp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+  }
+
+  .pp-table thead th {
+    background: var(--blue);
+    color: var(--white);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border: none;
+  }
+
+  .pp-table thead th:first-child {
+    border-radius: 4px 0 0 0;
+  }
+
+  .pp-table thead th:last-child {
+    border-radius: 0 4px 0 0;
+  }
+
+  .pp-table tbody td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: top;
+    color: var(--gray-600);
+  }
+
+  .pp-table tbody tr:last-child td {
+    border-bottom: 2px solid var(--blue-mid);
+  }
+
+  .pp-table tbody tr:hover {
+    background: var(--blue-pale);
+  }
+
+  .pp-table .client {
+    font-weight: 700;
+    color: var(--gray-800);
+    white-space: nowrap;
+  }
+
+  .pp-table .impact {
+    color: var(--gray-700);
+  }
+
+  .pp-table .impact strong {
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  /* Differentiators */
+  .differentiators {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .diff-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .diff-icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--blue-pale), var(--blue-wash));
+    border: 1px solid rgba(46,117,182,0.15);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    margin-top: 0.1rem;
+  }
+
+  .diff-content {
+    font-size: 0.82rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+  }
+
+  .diff-content strong {
+    color: var(--gray-800);
+    font-weight: 700;
+  }
+
+  .diff-content .num {
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  /* ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ */
+  .footer {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 0.75rem 2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    position: relative;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+
+  .footer span {
+    margin: 0 0.75rem;
+    opacity: 0.4;
+  }
+
+  .footer a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    color: var(--gold-light);
+  }
+
+  /* ── Download bar (not printed) ── */
+  .download-bar {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .download-bar a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: var(--blue);
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .download-bar a:hover {
+    background: var(--blue-pale);
+    border-color: var(--blue-mid);
+    box-shadow: var(--shadow);
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .content {
+      grid-template-columns: 1fr;
+    }
+    .sidebar {
+      border-right: none;
+      border-bottom: 1px solid var(--gray-200);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0 2rem;
+    }
+    .competencies {
+      grid-template-columns: 1fr;
+    }
+    .hero { padding: 2rem 1.5rem 1.75rem; }
+    .main { padding: 1.5rem; }
+  }
+
+  @media (max-width: 640px) {
+    .hero-top { flex-direction: column; gap: 0.75rem; }
+    .hero-badge { text-align: left; }
+    .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+    .metric:nth-child(2)::after { display: none; }
+    .pp-table { font-size: 0.72rem; }
+    .pp-table thead th, .pp-table tbody td { padding: 0.4rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ═══════ HERO ═══════ -->
+  <header class="hero">
+    <div class="hero-top">
+      <div class="hero-brand">
+        <span class="doc-type">Capability Statement</span>
+        <h1>Alexandria's Design LLC</h1>
+        <p class="tagline">Education &amp; Training Solutions for Government &amp; Enterprise</p>
+      </div>
+      <div class="hero-badge">
+        <div class="badge-label">Woman-Owned Small Business</div>
+        <a href="https://www.alexandriasdesign.com" class="website" target="_blank">www.alexandriasdesign.com</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════ METRICS ═══════ -->
+  <div class="metrics-bar">
+    <div class="metric">
+      <div class="metric-value">10,000+</div>
+      <div class="metric-label">Learners Impacted</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">94%</div>
+      <div class="metric-label">Avg Satisfaction</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">120+</div>
+      <div class="metric-label">Hours DL Content</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">40+</div>
+      <div class="metric-label">Years Combined Expertise</div>
+    </div>
+  </div>
+
+  <!-- ═══════ CONTENT ═══════ -->
+  <div class="content">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Company Data</div>
+        <div class="sidebar-item">
+          <span class="label">UEI</span>
+          <span class="value">UU4GQQXJ3K19</span>
+        </div>
+        <div class="sidebar-item">
+          <span class="label">CAGE</span>
+          <span class="value">8RV77</span>
+        </div>
+        <div class="sidebar-item">
+          <span class="label">Size</span>
+          <span class="value" style="font-size:0.72rem">Small / WOSB</span>
+        </div>
+        <div class="sidebar-item">
+          <span class="label">SAM.gov</span>
+          <span class="value" style="color:var(--gold)">Active</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">NAICS Codes</div>
+        <div class="naics-grid">
+          <div class="naics-item"><span class="code">611710</span><span class="desc">Ed Support Svcs</span></div>
+          <div class="naics-item"><span class="code">611430</span><span class="desc">Prof Dev Training</span></div>
+          <div class="naics-item"><span class="code">541611</span><span class="desc">Mgmt Consulting</span></div>
+          <div class="naics-item"><span class="code">611420</span><span class="desc">Computer Training</span></div>
+          <div class="naics-item"><span class="code">541512</span><span class="desc">Comp Sys Design</span></div>
+          <div class="naics-item"><span class="code">611699</span><span class="desc">Other Ed Services</span></div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Certifications</div>
+        <ul class="cert-list">
+          <li>Woman-Owned Small Business (WOSB)</li>
+          <li>Minority-Owned Business</li>
+          <li>Small Disadvantaged Business (SDB)</li>
+          <li>SAM.gov Registered &amp; Active</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Contact</div>
+        <div class="contact-block">
+          <div class="contact-name">Dr. Marie Martin, Ed.D.</div>
+          <div class="contact-role">Chief Executive Officer</div>
+          <div class="contact-info">
+            310-709-4893<br>
+            <a href="mailto:info@alexandriasdesign.com">info@alexandriasdesign.com</a>
+          </div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-name">Dr. Charles Martin, Ed.D.</div>
+          <div class="contact-role">Chief Information Officer</div>
+          <div class="contact-info">
+            323-632-0271<br>
+            <a href="mailto:drcharlesmartinjr@alexandriasdesign.com">drcharlesmartinjr@alexandriasdesign.com</a>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <main class="main">
+
+      <!-- About -->
+      <section class="section">
+        <div class="section-title">About Us</div>
+        <p class="about-text">
+          Alexandria's Design LLC is a woman-owned instructional design and training development firm delivering high-impact educational solutions for federal agencies, military organizations, and Fortune 500 companies. Founded by <strong>Dr. Marie Martin (Ed.D., USC)</strong> and <strong>Dr. Charles Martin (Ed.D., University of Florida)</strong>, we bring 40+ combined years of expertise in curriculum development, eLearning design, and workforce training.
+        </p>
+      </section>
+
+      <!-- Core Competencies -->
+      <section class="section">
+        <div class="section-title">Core Competencies</div>
+        <div class="competencies">
+          <div class="competency"><strong>Distributed Learning (DL)</strong>&nbsp;&mdash; TRADOC / Army University Compliant</div>
+          <div class="competency"><strong>Leadership &amp; Prof Dev</strong>&nbsp;&mdash; Virtual &amp; In-Person Training</div>
+          <div class="competency"><strong>eLearning Development</strong>&nbsp;&mdash; Articulate 360, SCORM/xAPI</div>
+          <div class="competency"><strong>508 Accessibility</strong>&nbsp;&mdash; Full Compliance</div>
+          <div class="competency"><strong>Curriculum Alignment</strong>&nbsp;&mdash; CCSS, NGSS, MIL-ED Standards</div>
+          <div class="competency"><strong>AI in Education</strong>&nbsp;&mdash; 4IR Workforce Readiness</div>
+        </div>
+      </section>
+
+      <!-- Past Performance -->
+      <section class="section">
+        <div class="section-title">Past Performance</div>
+        <table class="pp-table">
+          <thead>
+            <tr>
+              <th style="width:22%">Client</th>
+              <th style="width:32%">Project</th>
+              <th style="width:46%">Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="client">U.S. Army MEDCoE</td>
+              <td>Captain's Career Course DL, 3M Course, Preventive Medicine</td>
+              <td class="impact"><strong>3</strong> DL courses (<strong>120+</strong> contact hrs); supporting <strong>30,000+</strong> annual training pipeline; <strong>94%</strong> learner satisfaction</td>
+            </tr>
+            <tr>
+              <td class="client">DoD OUSD(A&amp;S)</td>
+              <td>Mentor-Protege Program Portal eLearning (via Eccalon)</td>
+              <td class="impact"><strong>10</strong> modules; <strong>136</strong> learning objectives; bilingual EN/ES; fully <strong>508</strong>-compliant</td>
+            </tr>
+            <tr>
+              <td class="client">Microsoft Education</td>
+              <td>Educator Insider Series, Equity Training, PowerApps</td>
+              <td class="impact"><strong>3,000+</strong> educators trained; <strong>93%</strong> satisfaction rate</td>
+            </tr>
+            <tr>
+              <td class="client">UCLA Health</td>
+              <td>ACEs Aware eLearning, Provider Burnout, Stress Busters</td>
+              <td class="impact"><strong>5,000+</strong> health professionals; CEU-accredited</td>
+            </tr>
+            <tr>
+              <td class="client">NIH SBIR</td>
+              <td>K-12 STEM Curriculum Development (Cell Collective)</td>
+              <td class="impact">NGSS-aligned modeling platform; adopted by schools <strong>nationwide</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Differentiators -->
+      <section class="section">
+        <div class="section-title">Differentiators</div>
+        <div class="differentiators">
+          <div class="diff-item">
+            <div class="diff-icon">&#9733;</div>
+            <div class="diff-content"><strong>Proven DoD Impact</strong> &mdash; <span class="num">120+</span> hours of Army Medical DL content training service members across MEDCoE installations</div>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon">&#9670;</div>
+            <div class="diff-content"><strong>Measurable Results</strong> &mdash; <span class="num">94%</span> average end-user satisfaction across all government and enterprise engagements</div>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon">&#9632;</div>
+            <div class="diff-content"><strong>Dual Doctoral Leadership</strong> &mdash; Both principals hold terminal degrees in Education (USC, UF)</div>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon">&#9654;</div>
+            <div class="diff-content"><strong>Full-Stack Delivery</strong> &mdash; <span class="num">20+</span> courses delivered end-to-end: needs analysis through LMS deployment</div>
+          </div>
+          <div class="diff-item">
+            <div class="diff-icon">&#9679;</div>
+            <div class="diff-content"><strong>AI-Augmented Development</strong> &mdash; Research-backed AI integration for faster delivery without sacrificing quality</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    Alexandria's Design LLC <span>|</span> <a href="https://www.alexandriasdesign.com" target="_blank">www.alexandriasdesign.com</a> <span>|</span> Woman-Owned Small Business <span>|</span> UEI: UU4GQQXJ3K19 <span>|</span> CAGE: 8RV77
+  </footer>
+
+</div>
+
+<!-- Download / Print bar -->
+<div class="download-bar no-print">
+  <a href="javascript:window.print()">&#128424; Print / Save as PDF</a>
+</div>
+
+</body>
+</html>
