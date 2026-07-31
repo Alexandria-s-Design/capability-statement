@@ -8,3 +8,14 @@
 **Status**: ✅ Pushed
 
 ---
+
+### 2026-07-30 17:10:00 — Codex (GPT)
+**Task**: Sanitize the public capability statement to the verified federal-outreach evidence ledger.
+**Changes**:
+- Removed unsupported certifications, clearances, accreditations, named-client performance, quantitative impact, and adoption claims.
+- Limited registration data, NAICS codes, and service descriptions to the verified evidence ledger while preserving the page design.
+
+**Commit**: `Constrain public capability claims to verified evidence`
+**Status**: ✅ Pushed
+
+---
