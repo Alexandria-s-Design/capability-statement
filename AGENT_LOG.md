@@ -9,6 +9,18 @@
 
 ---
 
+### 2026-08-11 15:45:00 — Codex (GPT)
+**Task**: Add verified California procurement information and UNSPSC codes to the public capability statement for Caltrans District 11.
+**Changes**:
+- Added Cal eProcure Bidder ID BID0126342 to company data.
+- Added six focused UNSPSC codes covering training planning, curriculum development, distance learning, educational technology, and eLearning software.
+- Clarified current California certification and professional-license status without claiming credentials the company does not hold.
+
+**Commit**: `Make the capability statement complete for Caltrans review`
+**Status**: ✅ Pushed
+
+---
+
 ### 2026-07-30 17:10:00 — Codex (GPT)
 **Task**: Sanitize the public capability statement to the verified federal-outreach evidence ledger.
 **Changes**:
